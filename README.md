@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Coding Mentor
+
+A learning and portfolio app that helps developers understand a public GitHub repository through explanatory AI chat and small exercises. The app should support users in solving problems themselves rather than simply writing code for them.
+
+## Problem
+
+It can be difficult to understand how the parts of a project fit together: components, data, API calls, and state. Generic AI responses often lack context from the user's own code and provide the solution too quickly.
+
+## MVP
+
+A user can:
+
+1. Enter the URL of a **public** GitHub repository.
+2. View the repository structure and select a text-based code file.
+3. Ask a question about the selected file in an AI chat.
+4. Receive an explanation that references the selected code and ends with a question to check understanding.
+5. Enable _Learning mode_, where the assistant offers hints before providing a complete solution.
+
+## Outside the MVP Scope
+
+- Authentication, GitHub OAuth, or private repositories
+- Automatic analysis or indexing of entire repositories
+- Persistent chat history and learning statistics
+- File editing, commits, or pull requests
+- A custom MCP server and Docker deployment
+
+These are deliberate exclusions. The MVP should be complete, testable, and easy to explain as a portfolio project.
+
+## Technical Direction
+
+- Next.js (App Router) and React
+- TypeScript
+- Tailwind CSS
+- Next.js route handlers for server logic
+- GitHub REST API for public repository data
+- AI through a server-side API route; keys must never be sent to the browser
+- Testing: unit tests for pure logic and at least one end-to-end user journey
+
+## Proposed Architecture
+
+```text
+Browser (React UI)
+  ├─ Repository URL + file picker
+  └─ Chat + Learning mode
+             │
+             ▼
+Next.js server / route handlers
+  ├─ Validate input and limit data
+  ├─ Fetch public files/repository structure from GitHub
+  └─ Call AI with only the necessary code context
+             │
+             ▼
+GitHub API / AI API
+```
+
+Keep responsibilities clear: the UI displays data, the server handles API keys and external calls, and domain logic (such as prompt building) lives in small, testable modules.
 
 ## Getting Started
 
-First, run the development server:
+Follow [IMPLEMENTATION_PLAN.md](./IMPLEMENTATION_PLAN.md) one step at a time. Before each coding task, explain the goal in your own words, write a short plan, and test the smallest working piece.
+
+You should have Node.js and pnpm installed before continuing.
+pnpm version used: pnpm@11.22.0
+
+First run:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+
+pnpm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then you can open the app via http://localhost:3000 or what the terminal shows you.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Quality Checks and Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**For Quality Checks run:**
 
-## Learn More
+```bash
+pnpm run lint
+```
 
-To learn more about Next.js, take a look at the following resources:
+This will check the code and make sure there are no ESLint issues.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**And for Production Build run:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+pnpm run build
+```
 
-## Deploy on Vercel
+This will create a production version of the app and show any possible build issues.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Future Extensions
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Once the MVP is stable, the project can be extended with OAuth for private repositories, saved learning progress, semantic search, and a standalone MCP server packaged in Docker. The MCP server should be a separate project module with the minimum necessary permissions and its own security model.
