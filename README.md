@@ -62,19 +62,21 @@ Follow [IMPLEMENTATION_PLAN.md](./IMPLEMENTATION_PLAN.md) one step at a time. Be
 You should have Node.js and pnpm installed before continuing.
 pnpm version used: pnpm@11.22.0
 
+Node.js version used 26.12.1, specified in .nvmrc. If you use nvm, run the following commands from the project root:
+
 First run:
+
+```bash
+nvm install
+nvm use
+```
+
+Then run:
 
 ```bash
 pnpm install
 
 pnpm run dev
-```
-
-Node.js version used 26.12.1, specified in .nvmrc. If you use nvm, run the following commands from the project root:
-
-```bash
-nvm install
-nvm use
 ```
 
 Then you can open the app via http://localhost:3000 or what the terminal shows you.
