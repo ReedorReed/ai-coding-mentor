@@ -62,7 +62,16 @@ Follow [IMPLEMENTATION_PLAN.md](./IMPLEMENTATION_PLAN.md) one step at a time. Be
 You should have Node.js and pnpm installed before continuing.
 pnpm version used: pnpm@11.22.0
 
+Node.js version used 26.12.1, specified in .nvmrc. If you use nvm, run the following commands from the project root:
+
 First run:
+
+```bash
+nvm install
+nvm use
+```
+
+Then run:
 
 ```bash
 pnpm install
@@ -76,17 +85,21 @@ Then you can open the app via http://localhost:3000 or what the terminal shows y
 
 **For Quality Checks run:**
 
-```bash
-pnpm run lint
-```
+`pnpm run lint`
 
 This will check the code and make sure there are no ESLint issues.
 
+`pnpm run typecheck`
+
+Generates Next.js types, then checks TypeScript types without emitting JavaScript files.
+
+`pnpm run test`
+
+Runs all tests once and exits.
+
 **And for Production Build run:**
 
-```bash
-pnpm run build
-```
+`pnpm run build`
 
 This will create a production version of the app and show any possible build issues.
 
