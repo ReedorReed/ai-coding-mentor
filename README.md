@@ -103,6 +103,14 @@ Runs all tests once and exits.
 
 This will create a production version of the app and show any possible build issues.
 
+### CI
+
+CI workflow runs on pull requests and/or on pushes to main branch.
+
+The CI workflow uses the projects Node- & pnpm versions.
+
+The workflow succeeds only if lint, type checking, and tests all pass.
+
 ## Future Extensions
 
 Once the MVP is stable, the project can be extended with OAuth for private repositories, saved learning progress, semantic search, and a standalone MCP server packaged in Docker. The MCP server should be a separate project module with the minimum necessary permissions and its own security model.
