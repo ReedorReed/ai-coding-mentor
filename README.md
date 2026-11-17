@@ -111,6 +111,18 @@ The CI workflow uses the projects Node- & pnpm versions.
 
 The workflow succeeds only if lint, type checking, and tests all pass.
 
+### Branch protection
+
+[Link to rules](https://github.com/ReedorReed/ai-coding-mentor/rules/26801843)
+
+The rules:
+
+- Are only for main, without bypass.
+- Require PR with Squash and resolved review threads.
+- Require 0 approvals because this is a solo project and authors cannot approve their own pull requests. Each PR is still reviewed with an AI mentor before merging; this does not count as a GitHub approval.
+- Require passed `quality` from GitHub Actions & an up-to-date branch.
+- Block deletion and force pushes.
+
 ## Future Extensions
 
 Once the MVP is stable, the project can be extended with OAuth for private repositories, saved learning progress, semantic search, and a standalone MCP server packaged in Docker. The MCP server should be a separate project module with the minimum necessary permissions and its own security model.
